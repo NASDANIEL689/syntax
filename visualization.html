@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visualization — Syntax Health</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav-bar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="pics/logo3.jpeg" alt="Syntax Health" class="logo-icon-img" />
+        <span class="logo-text">Syntax Health</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="api.html">API</a>
+        <a href="ai.html">AI</a>
+        <div class="nav-dropdown">
+          <button type="button" class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">Solution</button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="simulation.html">Simulation</a></li>
+            <li><a href="visualization.html" class="active">Visualization</a></li>
+          </ul>
+        </div>
+      </nav>
+      <a href="index.html#demo" class="btn btn-primary">Request Demo</a>
+    </div>
+  </header>
+
+  <main class="section api-page" style="padding-top: 10rem;">
+    <div class="container">
+      <h1 class="section-title">Visualization</h1>
+      <p class="section-lead">Dashboards and graphs that make risk and projections easy to understand. Real-time risk scores, future projection charts, and system-by-system breakdowns.</p>
+
+      <section class="api-section">
+        <h2 class="api-section-title">What you see</h2>
+        <p class="api-section-lead">Visualization turns simulation and API outputs into clear, actionable views. Risk is shown at a glance; trends and scenarios are compared in charts and lists.</p>
+        <div class="diff-grid">
+          <div class="diff-card">Overall risk gauge: one clear level — Low (green), Moderate (yellow), or High (red) — so patients and clinicians know status at a glance.</div>
+          <div class="diff-card">Trend lines and projections: time-series graphs show how risk or key vitals have changed and how they may change under &quot;trend continues&quot; vs &quot;intervention&quot; scenarios.</div>
+          <div class="diff-card">Organ- and system-level views: cardiovascular, nervous, digestive, muscular (and maternal/newborn where relevant) with per-system risk and recommendations.</div>
+          <div class="diff-card">Alert list: active alerts with plain-English text and suggested actions (clinic visit, nutrition, rest, emergency), linked to the relevant system or reading.</div>
+        </div>
+      </section>
+
+      <section class="api-section">
+        <h2 class="api-section-title">Dashboard types</h2>
+        <p class="api-section-lead">Different views for clinicians and patients, each showing the right level of detail and actions.</p>
+        <div class="diff-grid">
+          <div class="diff-card">Clinician dashboard: aggregated risk across patients, cohort views, drill-down into a single patient&#39;s digital twin, simulation results, and intervention suggestions for care planning.</div>
+          <div class="diff-card">Patient dashboard: personal risk score, simple trend graphs, and recommendations in plain language. Optional links to &quot;My doctor&quot; and appointment or support resources.</div>
+          <div class="diff-card">Maternal and newborn: combined view for pregnancy/postpartum plus infant (feeding, temperature, weight) with maternal risk index and newborn vulnerability, plus clear next steps.</div>
+        </div>
+      </section>
+
+      <section class="api-section">
+        <h2 class="api-section-title">Design and performance</h2>
+        <p class="api-section-lead">Visualization is built for clarity, accessibility, and fast load times.</p>
+        <div class="diff-grid">
+          <div class="diff-card">Mobile-first: layouts and touch targets work on phones and tablets so patients and field staff can use the dashboard on the go.</div>
+          <div class="diff-card">Low-literacy friendly: minimal jargon, clear labels, and color used together with text (green/yellow/red plus &quot;Low&quot;/&quot;Moderate&quot;/&quot;High&quot;) so meaning doesn&#39;t rely on color alone.</div>
+          <div class="diff-card">Load time: dashboard loads in under 3 seconds; simulation and risk updates refresh in under 2 seconds so the view stays in sync with the latest data.</div>
+          <div class="diff-card">Export and reporting: key charts and risk summaries can be exported or embedded in reports for referrals, audits, or population-level analysis (with appropriate consent and anonymization).</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© Syntax Health. AI-Powered Physiological Simulation.</p>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

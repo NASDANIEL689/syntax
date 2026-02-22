@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API — Syntax Health</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav-bar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="pics/logo3.jpeg" alt="Syntax Health" class="logo-icon-img" />
+        <span class="logo-text">Syntax Health</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="api.html" class="active">API</a>
+        <a href="ai.html">AI</a>
+        <div class="nav-dropdown">
+          <button type="button" class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">Solution</button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="simulation.html">Simulation</a></li>
+            <li><a href="visualization.html">Visualization</a></li>
+          </ul>
+        </div>
+      </nav>
+      <a href="index.html#demo" class="btn btn-primary">Request Demo</a>
+    </div>
+  </header>
+
+  <main class="section api-page" style="padding-top: 10rem;">
+    <div class="container">
+      <h1 class="section-title">API</h1>
+      <p class="section-lead">Integrate physiological simulation and risk scoring into your apps, EHRs, and clinical workflows. Send vitals and health data; get real-time risk indices, projections, and alerts.</p>
+
+      <section class="api-section">
+        <h2 class="api-section-title">How the API works</h2>
+        <p class="section-lead" style="margin-bottom: 1.5rem;">RESTful flow: authenticate, send patient health data, receive digital twin state and risk outputs in under 2 seconds.</p>
+        <div class="cards-three">
+          <div class="card card-glass">
+            <div class="card-icon card-icon-svg" style="color: var(--accent-cyan);">1</div>
+            <h3>Authenticate</h3>
+            <p>Use your API key or OAuth to get a token. All requests are over HTTPS with role-based access.</p>
+          </div>
+          <div class="card card-glass">
+            <div class="card-icon card-icon-svg" style="color: var(--accent-cyan);">2</div>
+            <h3>Send data</h3>
+            <p>POST vitals, labs, medications, and symptoms. Support for single readings or batch uploads.</p>
+          </div>
+          <div class="card card-glass">
+            <div class="card-icon card-icon-svg" style="color: var(--accent-cyan);">3</div>
+            <h3>Get results</h3>
+            <p>Receive risk scores (low / moderate / high), digital twin state, projection graphs, and alert flags.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="api-section">
+        <h2 class="api-section-title">Solutions it solves</h2>
+        <div class="diff-grid">
+          <div class="diff-card">Preventive risk scoring — catch cardiovascular, mental health, and nutritional risk before crises.</div>
+          <div class="diff-card">EHR and clinic integration — plug into existing systems without replacing them.</div>
+          <div class="diff-card">Maternal and newborn monitoring — pregnancy, postpartum, and infant vulnerability in one pipeline.</div>
+          <div class="diff-card">Chronic disease trajectory — diabetes, hypertension, and multi-organ stress simulation.</div>
+          <div class="diff-card">Unified digital twin — one API for multiple body systems (cardio, nervous, digestive, muscular).</div>
+          <div class="diff-card">Decision support at scale — from single clinic to national-level monitoring infrastructure.</div>
+        </div>
+      </section>
+
+      <section class="api-section">
+        <h2 class="api-section-title">Pricing</h2>
+        <p class="section-lead" style="margin-bottom: 2rem;">Simple, transparent pricing. Volume discounts and custom plans available for enterprises.</p>
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <h3>Starter</h3>
+            <p class="pricing-amount"><span class="pricing-currency">$</span>99<span class="pricing-period">/mo</span></p>
+            <p class="pricing-desc">Up to 1,000 API calls/month. Risk scores and basic alerts. Ideal for pilots and small clinics.</p>
+            <ul class="pricing-features">
+              <li>Digital twin + risk index</li>
+              <li>Cardiovascular &amp; mental health modules</li>
+              <li>Email support</li>
+            </ul>
+            <a href="index.html#demo" class="btn btn-secondary" style="width: 100%; margin-top: 1rem;">Get started</a>
+          </div>
+          <div class="pricing-card pricing-card-featured">
+            <span class="pricing-badge">Popular</span>
+            <h3>Pro</h3>
+            <p class="pricing-amount"><span class="pricing-currency">$</span>399<span class="pricing-period">/mo</span></p>
+            <p class="pricing-desc">Up to 25,000 API calls/month. All modules, simulations, and visualization endpoints.</p>
+            <ul class="pricing-features">
+              <li>Everything in Starter</li>
+              <li>Simulation &amp; visualization APIs</li>
+              <li>Maternal &amp; newborn modules</li>
+              <li>Priority support</li>
+            </ul>
+            <a href="index.html#demo" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Get started</a>
+          </div>
+          <div class="pricing-card">
+            <h3>Enterprise</h3>
+            <p class="pricing-amount"><span class="pricing-currency">$</span>Custom</p>
+            <p class="pricing-desc">Unlimited or high-volume calls. Dedicated infra, SLA, and custom integrations.</p>
+            <ul class="pricing-features">
+              <li>Everything in Pro</li>
+              <li>Custom rate limits &amp; SLAs</li>
+              <li>Dedicated support &amp; onboarding</li>
+              <li>HIPAA-compliant deployment options</li>
+            </ul>
+            <a href="index.html#demo" class="btn btn-secondary" style="width: 100%; margin-top: 1rem;">Contact sales</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© Syntax Health. AI-Powered Physiological Simulation.</p>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

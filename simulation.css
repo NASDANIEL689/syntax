@@ -1,0 +1,240 @@
+/* Simulation page — Live demo form and results */
+
+.sim-demo {
+  margin-bottom: 4rem;
+}
+
+.sim-demo-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-white);
+}
+
+.sim-demo-lead {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 640px;
+}
+
+.sim-form {
+  padding: 1.75rem 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sim-form-heading {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  color: var(--text-white);
+}
+
+.sim-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.sim-field label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 0.375rem;
+}
+
+.sim-field input,
+.sim-field select {
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--text-white);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+}
+
+.sim-field input::placeholder {
+  color: var(--text-muted);
+}
+
+.sim-field input:focus,
+.sim-field select:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+}
+
+.sim-chatbot {
+  margin-bottom: 1.5rem;
+}
+
+.sim-chatbot label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-white);
+  margin-bottom: 0.5rem;
+}
+
+.sim-chatbot-input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--text-white);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  resize: vertical;
+  min-height: 100px;
+}
+
+.sim-chatbot-input::placeholder {
+  color: var(--text-muted);
+}
+
+.sim-chatbot-input:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+}
+
+.sim-form-actions {
+  margin-top: 0.5rem;
+}
+
+.sim-form-error {
+  font-size: 0.875rem;
+  color: #f87171;
+  margin-top: 0.75rem;
+}
+
+/* Results section */
+.sim-results {
+  padding-top: 1rem;
+}
+
+.sim-results-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: var(--text-white);
+}
+
+.sim-results-sub {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  margin-bottom: 1.5rem;
+}
+
+.sim-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.sim-card {
+  padding: 1.25rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.sim-card-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sim-card-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+.sim-card-value.risk-low { color: var(--accent-cyan); }
+.sim-card-value.risk-moderate { color: rgb(251, 191, 36); }
+.sim-card-value.risk-high { color: rgb(248, 113, 113); }
+
+.sim-charts-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.sim-chart-wrap {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  height: 220px;
+  overflow: hidden;
+}
+
+.sim-chart-wrap canvas {
+  display: block;
+  max-height: 180px;
+}
+
+.sim-chart-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.sim-meaning {
+  padding: 1.5rem 1.75rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sim-meaning-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-white);
+}
+
+.sim-meaning-content {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.sim-meaning-content p {
+  margin-bottom: 0.75rem;
+}
+
+.sim-meaning-content p:last-child {
+  margin-bottom: 0;
+}
+
+.sim-meaning-content strong {
+  color: var(--accent-cyan);
+}
+
+@media (max-width: 768px) {
+  .sim-form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .sim-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+  .sim-charts-row {
+    grid-template-columns: 1fr;
+  }
+}

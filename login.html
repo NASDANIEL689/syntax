@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <title>Log in — Syntax Health</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="auth-page.css" />
+</head>
+<body>
+  <header class="nav-bar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="pics/logo3.jpeg" alt="Syntax Health" class="logo-icon-img" />
+        <span class="logo-text">Syntax Health</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="api.html">API</a>
+        <a href="ai.html">AI</a>
+        <div class="nav-dropdown">
+          <button type="button" class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">Solution</button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="simulation.html">Simulation</a></li>
+            <li><a href="visualization.html">Visualization</a></li>
+          </ul>
+        </div>
+      </nav>
+      <a href="login.html" class="btn btn-primary">Log in</a>
+    </div>
+  </header>
+
+  <main class="auth-page">
+    <div class="auth-container">
+      <div class="auth-promo">
+        <span class="auth-promo-label">LOG IN</span>
+        <h1 class="auth-promo-headline">We Simulate the Human Body <span class="auth-promo-accent">Before Emergencies Happen.</span></h1>
+        <p class="auth-promo-text">Get started with the most secure platform for physiological simulation and preventive risk scoring.</p>
+        <div class="auth-promo-buttons">
+          <a href="index.html#how-it-works" class="btn btn-secondary">See How It Works</a>
+          <a href="index.html#demo" class="btn btn-primary">Request Demo</a>
+        </div>
+        <div class="auth-promo-bg"></div>
+      </div>
+      <div class="auth-form-wrap">
+        <h2 class="auth-form-title">Log in<span class="auth-form-title-accent">.</span></h2>
+        <form id="auth-login-form" class="auth-form">
+          <div class="auth-field">
+            <label for="auth-email">Email</label>
+            <div class="auth-input-wrap">
+              <input type="email" id="auth-email" name="email" placeholder="you@example.com" required />
+              <span class="auth-input-icon" aria-hidden="true">&#9993;</span>
+            </div>
+          </div>
+          <div class="auth-field">
+            <label for="auth-password">Password</label>
+            <div class="auth-input-wrap">
+              <input type="password" id="auth-password" name="password" placeholder="••••••••" required />
+              <button type="button" class="auth-password-toggle" aria-label="Show password">Show</button>
+            </div>
+          </div>
+          <p id="auth-login-error" class="auth-login-error" style="display: none;"></p>
+          <p class="auth-form-footer">
+            Don't have an account? <a href="register.html" id="auth-register-link">Register</a>
+          </p>
+          <button type="submit" class="btn btn-primary auth-submit">Log in</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script src="./js/auth.js"></script>
+  <script src="./script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var form = document.getElementById('auth-login-form');
+      var errorEl = document.getElementById('auth-login-error');
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          if (errorEl) errorEl.style.display = 'none';
+          var email = document.getElementById('auth-email').value.trim();
+          var password = document.getElementById('auth-password').value;
+          if (!email || !password) {
+            if (errorEl) {
+              errorEl.textContent = 'Please enter email and password.';
+              errorEl.style.display = 'block';
+            }
+            return;
+          }
+          if (typeof window.SyntaxAuth === 'undefined') {
+            if (errorEl) {
+              errorEl.textContent = 'Authentication could not load. Please refresh the page.';
+              errorEl.style.display = 'block';
+            }
+            return;
+          }
+          try {
+            var result = window.SyntaxAuth.login(email, password);
+            if (result.ok && result.user) {
+              // All roles go to a page that exists (no portal folder)
+              if (result.user.role === 'patient') {
+                window.location.replace('patient-dashboard.html');
+              } else if (result.user.role === 'clinician') {
+                window.location.replace('clinical-dashboard.html');
+              } else {
+                window.location.replace('index.html');
+              }
+            } else if (result && !result.ok) {
+              if (errorEl) {
+                errorEl.textContent = result.message || 'Invalid email or password.';
+                errorEl.style.display = 'block';
+              }
+            } else {
+              if (errorEl) {
+                errorEl.textContent = 'Invalid email or password.';
+                errorEl.style.display = 'block';
+              }
+            }
+          } catch (err) {
+            if (errorEl) {
+              errorEl.textContent = 'Something went wrong. Please try again.';
+              errorEl.style.display = 'block';
+            }
+          }
+        });
+      }
+      var toggle = document.querySelector('.auth-password-toggle');
+      var pw = document.getElementById('auth-password');
+      if (toggle && pw) {
+        toggle.addEventListener('click', function (e) {
+          e.preventDefault();
+          var isPass = pw.type === 'password';
+          pw.type = isPass ? 'text' : 'password';
+          toggle.textContent = isPass ? 'Hide' : 'Show';
+          toggle.setAttribute('aria-label', isPass ? 'Hide password' : 'Show password');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register — Syntax Health</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="portal.css" />
+</head>
+<body>
+  <header class="nav-bar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="pics/logo3.jpeg" alt="Syntax Health" class="logo-icon-img" />
+        <span class="logo-text">Syntax Health</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="api.html">API</a>
+        <a href="ai.html">AI</a>
+        <div class="nav-dropdown">
+          <button type="button" class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">Solution</button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="simulation.html">Simulation</a></li>
+            <li><a href="visualization.html">Visualization</a></li>
+          </ul>
+        </div>
+      </nav>
+      <a href="login.html" class="btn btn-primary">Log in</a>
+    </div>
+  </header>
+
+  <main class="portal-page">
+    <div class="portal-box">
+      <h1>Create account</h1>
+      <p class="subtitle">Register as Clinician (doctor/nurse) or Patient.</p>
+      <form id="register-form">
+        <div class="form-group">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" required placeholder="e.g. Jane Doe" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required placeholder="you@example.com" />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required placeholder="••••••••" minlength="6" />
+          <span class="form-hint">At least 6 characters</span>
+        </div>
+        <div class="form-group">
+          <label for="passwordConfirm">Confirm password</label>
+          <input type="password" id="passwordConfirm" name="passwordConfirm" required placeholder="••••••••" />
+        </div>
+        <div class="form-group">
+          <label for="role">I am a</label>
+          <select id="role" name="role" required>
+            <option value="">Select role</option>
+            <option value="clinician">Clinician (doctor / nurse)</option>
+            <option value="patient">Patient</option>
+          </select>
+        </div>
+        <div class="form-group form-group-patient-type" style="display: none;">
+          <label for="patientType">Patient type</label>
+          <select id="patientType" name="patientType">
+            <option value="">Select type</option>
+            <option value="kid">Child</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="pregnant">Pregnant / Postpartum</option>
+          </select>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+        <p id="form-message" style="margin-top: 0.75rem; font-size: 0.875rem; color: #f87171; display: none;"></p>
+      </form>
+      <p class="portal-link"><a href="login.html">Already have an account? Log in</a></p>
+    </div>
+  </main>
+  <script src="js/auth.js"></script>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var roleSelect = document.getElementById('role');
+      var patientTypeGroup = document.querySelector('.form-group-patient-type');
+      if (roleSelect && patientTypeGroup) {
+        roleSelect.addEventListener('change', function () {
+          patientTypeGroup.style.display = this.value === 'patient' ? 'block' : 'none';
+        });
+      }
+
+      var form = document.getElementById('register-form');
+      if (!form) return;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var msg = document.getElementById('form-message');
+        if (msg) msg.style.display = 'none';
+        var name = document.getElementById('name').value.trim();
+        var email = document.getElementById('email').value.trim();
+        var password = document.getElementById('password').value;
+        var passwordConfirm = document.getElementById('passwordConfirm').value;
+        var role = document.getElementById('role').value;
+        var patientType = document.getElementById('patientType').value || null;
+        if (!name || !email || !password || !role) {
+          if (msg) { msg.textContent = 'Please fill all required fields.'; msg.style.display = 'block'; }
+          return;
+        }
+        if (password.length < 6) {
+          if (msg) { msg.textContent = 'Password must be at least 6 characters.'; msg.style.display = 'block'; }
+          return;
+        }
+        if (password !== passwordConfirm) {
+          if (msg) { msg.textContent = 'Passwords do not match.'; msg.style.display = 'block'; }
+          return;
+        }
+        if (typeof window.SyntaxAuth === 'undefined') {
+          if (msg) { msg.textContent = 'Registration could not load. Please refresh the page.'; msg.style.display = 'block'; }
+          return;
+        }
+        try {
+          var result = window.SyntaxAuth.register({ name: name, email: email, password: password, role: role, patientType: patientType });
+          if (result.ok) {
+            window.SyntaxAuth.setCurrentUser(result.user);
+            if (result.user.role === 'patient') {
+              window.location.href = 'patient-dashboard.html';
+            } else if (result.user.role === 'clinician') {
+              window.location.href = 'clinical-dashboard.html';
+            } else {
+              window.location.href = 'index.html';
+            }
+          } else {
+            if (msg) { msg.textContent = result.message || 'Registration failed.'; msg.style.display = 'block'; }
+          }
+        } catch (err) {
+          if (msg) { msg.textContent = 'Something went wrong. Please try again.'; msg.style.display = 'block'; }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

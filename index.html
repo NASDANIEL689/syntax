@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Syntax Health — AI-Powered Physiological Simulation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- SECTION 1 — NAVIGATION BAR -->
+  <header class="nav-bar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="pics/logo3.jpeg" alt="Syntax Health" class="logo-icon-img" />
+        <span class="logo-text">Syntax Health</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="api.html">API</a>
+        <a href="ai.html">AI</a>
+        <div class="nav-dropdown">
+          <button type="button" class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">Solution</button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="simulation.html">Simulation</a></li>
+            <li><a href="visualization.html">Visualization</a></li>
+          </ul>
+        </div>
+      </nav>
+      <a href="login.html" class="btn btn-primary">Log in</a>
+    </div>
+  </header>
+
+  <!-- SECTION 2 — HERO -->
+  <section class="hero">
+    <div class="hero-bg-gradient"></div>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-avatar-wrap">
+          <img src="pics/1.jpeg" alt="" class="hero-avatar-img" />
+        </div>
+        <span class="hero-tag">AI-Powered Physiological Simulation</span>
+        <h1 class="hero-headline">We Simulate the Human Body Before Emergencies Happen.</h1>
+        <p class="hero-subtext">Syntax Health creates a real-time digital twin of the human body to detect organ stress and prevent life-threatening complications.</p>
+        <div class="hero-ctas">
+          <a href="#demo" class="btn btn-primary btn-lg">Run Live Simulation</a>
+          <a href="#how-it-works" class="btn btn-secondary btn-lg">See How It Works</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="body-svg-wrap">
+          <svg class="body-outline" viewBox="0 0 280 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Silhouette / outline -->
+            <path class="body-silhouette" d="M140 20 L160 60 L165 120 L168 180 L165 240 L160 300 L155 360 L145 400 L135 360 L130 300 L125 240 L122 180 L125 120 L130 60 Z" />
+            <!-- Heart - subtle glow -->
+            <g class="organ organ-heart">
+              <ellipse cx="140" cy="140" rx="22" ry="18" class="organ-glow" />
+              <path d="M140 125 C115 100 90 130 90 150 C90 175 140 200 140 200 C140 200 190 175 190 150 C190 130 165 100 140 125 Z" class="organ-fill" />
+            </g>
+            <!-- Kidney left -->
+            <g class="organ organ-kidney">
+              <ellipse cx="105" cy="220" rx="18" ry="22" class="organ-glow" />
+              <path d="M105 198 Q85 210 90 235 Q95 255 105 242 Q115 228 105 198 Z" class="organ-fill" />
+            </g>
+            <!-- Kidney right -->
+            <g class="organ organ-kidney">
+              <ellipse cx="175" cy="220" rx="18" ry="22" class="organ-glow" />
+              <path d="M175 198 Q195 210 190 235 Q185 255 175 242 Q165 228 175 198 Z" class="organ-fill" />
+            </g>
+            <!-- Pancreas -->
+            <g class="organ organ-pancreas">
+              <ellipse cx="140" cy="280" rx="28" ry="12" class="organ-glow" />
+              <path d="M112 278 L168 278 L165 284 L115 284 Z" class="organ-fill" />
+            </g>
+          </svg>
+        </div>
+        <!-- Floating metrics -->
+        <div class="floating-stat stat-1">
+          <span class="stat-line"><span class="stat-value" data-target="24">0</span><span class="stat-suffix">/7</span></span>
+          <span class="stat-label">Continuous Monitoring</span>
+        </div>
+        <div class="floating-stat stat-2">
+          <span class="stat-line"><span class="stat-value" data-target="3">0</span><span class="stat-suffix">-Day</span></span>
+          <span class="stat-label">Early Risk Detection</span>
+        </div>
+        <div class="floating-stat stat-3">
+          <span class="stat-line"><span class="stat-value" data-target="2">0</span></span>
+          <span class="stat-label">High-Risk Models</span>
+        </div>
+        <div class="floating-stat stat-4">
+          <span class="stat-line"><span class="stat-value" data-target="100">0</span><span class="stat-suffix">%</span></span>
+          <span class="stat-label">Privacy-Safe Data</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3 — HOW IT WORKS -->
+  <section id="how-it-works" class="section how-it-works">
+    <div class="container">
+      <h2 class="section-title">How It Works</h2>
+      <div class="cards-three">
+        <div class="card card-glass">
+          <div class="card-icon card-icon-svg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          </div>
+          <h3>Monitor</h3>
+          <p>Vitals, medication, and symptoms in one place.</p>
+        </div>
+        <div class="card card-glass">
+          <div class="card-icon card-icon-svg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <h3>Simulate</h3>
+          <p>AI models internal organ stress in real time.</p>
+        </div>
+        <div class="card card-glass">
+          <div class="card-icon card-icon-svg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3>Prevent</h3>
+          <p>Alerts before emergencies happen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4 — USE CASES -->
+  <section id="platform" class="section use-cases">
+    <div class="container">
+      <h2 class="section-title">Use Cases</h2>
+      <div class="split-screen">
+        <div class="use-case-card">
+          <h3>Diabetes & Hypertension</h3>
+          <p>Continuous glucose and blood pressure simulation. We predict spikes and organ stress before they become critical.</p>
+        </div>
+        <div class="use-case-card">
+          <h3>High-Risk Pregnancy</h3>
+          <p>Maternal and fetal physiology modeled together. Early detection of preeclampsia and gestational risks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5 — ABOUT US -->
+  <section id="about" class="section why-different">
+    <div class="container">
+      <h2 class="section-title">About Us</h2>
+      <p class="section-lead">Syntax Health is built to prevent health crises before they happen. We combine physiological simulation, AI, and clear visualizations so clinicians and patients can act earlier.</p>
+      <div class="diff-grid">
+        <div class="diff-card">We simulate the human body in real time — cardiovascular, nervous, digestive, and muscular systems — not just track vitals.</div>
+        <div class="diff-card">Our mission: give every patient and clinician a digital twin that predicts risk and supports preventive care.</div>
+        <div class="diff-card">Designed for scale — from a single clinic to national maternal and chronic-disease monitoring.</div>
+        <div class="diff-card">We believe healthcare should prevent crises, not only treat them. That drives everything we build.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6 — LIVE DEMO PREVIEW -->
+  <section id="demo" class="section demo-preview">
+    <div class="container">
+      <h2 class="section-title">Live Demo Preview</h2>
+      <div class="demo-mockup card-glass">
+        <div class="demo-header">
+          <span>Syntax Health — Simulation Dashboard</span>
+        </div>
+        <div class="demo-body">
+          <div class="demo-organs">
+            <div class="organ-dot heart-dot" title="Heart"></div>
+            <div class="organ-dot kidney-dot" title="Kidneys"></div>
+            <div class="organ-dot pancreas-dot" title="Pancreas"></div>
+          </div>
+          <div class="demo-legend">
+            <span class="risk-low">Low risk</span>
+            <span class="risk-mid">Monitor</span>
+            <span class="risk-high">Elevated</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7 — FINAL CTA -->
+  <section class="section cta-final">
+    <div class="container">
+      <h2 class="cta-headline">Healthcare Should Prevent Crises — Not Just Treat Them.</h2>
+      <a href="#demo" class="btn btn-primary btn-xl">Request Demo</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© Syntax Health. AI-Powered Physiological Simulation.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

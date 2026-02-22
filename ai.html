@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI — Syntax Health</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="ai-chat.css" />
+</head>
+<body>
+  <header class="nav-bar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="pics/logo3.jpeg" alt="Syntax Health" class="logo-icon-img" />
+        <span class="logo-text">Syntax Health</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="api.html">API</a>
+        <a href="ai.html" class="active">AI</a>
+        <div class="nav-dropdown">
+          <button type="button" class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">Solution</button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="simulation.html">Simulation</a></li>
+            <li><a href="visualization.html">Visualization</a></li>
+          </ul>
+        </div>
+      </nav>
+      <a href="login.html" class="btn btn-primary">Sign in</a>
+    </div>
+  </header>
+
+  <main class="section api-page" style="padding-top: 10rem;">
+    <div class="container">
+      <h1 class="section-title">AI</h1>
+      <p class="section-lead">Syntax Health uses hybrid AI — rules and LLMs — to power risk scoring, plain-English explanations, and preventive recommendations. Decision support only; no autonomous diagnosis.</p>
+
+      <section class="api-section">
+        <h2 class="api-section-title">How we use AI</h2>
+        <p class="api-section-lead">Our AI layer sits on top of physiological simulation: it interprets model outputs, explains risk in plain language, and suggests next steps. Every recommendation is traceable to underlying thresholds and data.</p>
+
+        <div class="ai-chat-container">
+          <div id="chat-window" class="ai-chat-window"></div>
+          <div class="ai-chat-input-wrap">
+            <textarea id="user-input" class="ai-chat-input" placeholder="Message Syntax Health AI..." rows="1"></textarea>
+            <button type="button" class="ai-chat-send" onclick="sendMessage()" aria-label="Send message">
+              <svg class="ai-chat-send-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            </button>
+          </div>
+        </div>
+      
+      <script>
+      async function sendMessage() {
+          const inputEl = document.getElementById('user-input');
+          const input = inputEl.value.trim();
+          if (!input) return;
+          const windowEl = document.getElementById('chat-window');
+          windowEl.innerHTML += '<div class="ai-chat-msg ai-chat-msg-user"><div class="ai-chat-bubble ai-chat-bubble-user">' + escapeHtml(input) + '</div></div>';
+          inputEl.value = '';
+          windowEl.scrollTop = windowEl.scrollHeight;
+          try {
+            const response = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: input }) });
+            const data = await response.json();
+            const reply = data.reply || (response.ok ? 'No reply.' : 'Server error.');
+            const errClass = response.ok ? '' : ' ai-chat-error';
+            windowEl.innerHTML += '<div class="ai-chat-msg ai-chat-msg-bot"><div class="ai-chat-bubble ai-chat-bubble-bot' + errClass + '">' + escapeHtml(reply) + '</div></div>';
+          } catch (e) {
+            windowEl.innerHTML += '<div class="ai-chat-msg ai-chat-msg-bot"><div class="ai-chat-bubble ai-chat-bubble-bot ai-chat-error">Could not reach the server. Start it with: npm start (in the project folder) and open http://localhost:3000/ai.html</div></div>';
+          }
+          windowEl.scrollTop = windowEl.scrollHeight;
+      }
+      function escapeHtml(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+      document.getElementById('user-input').addEventListener('keydown', function(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
+      </script>
+
+        <div class="diff-grid">
+          <div class="diff-card">Risk scoring: rule-based logic (e.g. blood pressure, heart rate, mood scores) combined with validated thresholds so scores are consistent and auditable.</div>
+          <div class="diff-card">Plain-English explanations: LLMs turn technical outputs into short, clear summaries so patients and clinicians know why a risk level changed.</div>
+          <div class="diff-card">Preventive recommendations: when a threshold is crossed, the system suggests actions — clinic visit, nutrition change, emotional support, or emergency care — without making a diagnosis.</div>
+        </div>
+      </section>
+
+      <section class="api-section">
+        <h2 class="api-section-title">Where AI is applied</h2>
+        <p class="api-section-lead">AI supports each simulated body system and use case with explanations and recommendations.</p>
+        <div class="diff-grid">
+          <div class="diff-card">Cardiovascular: interprets BP, heart rate, swelling, headache patterns and explains maternal or chronic cardiovascular risk in simple terms.</div>
+          <div class="diff-card">Mental health: uses PHQ-style logic and mood/sleep/stress inputs to assess postpartum depression risk and 30-day trajectory, with clear language for patients and clinicians.</div>
+          <div class="diff-card">Nutrition and digestion: explains anemia risk, fatigue progression, and iron/hydration recommendations from intake and appetite data.</div>
+          <div class="diff-card">Maternal and newborn: summarizes maternal risk index and newborn vulnerability, with actionable guidance (e.g. when to seek care) in plain language.</div>
+        </div>
+      </section>
+
+      <section class="api-section">
+        <h2 class="api-section-title">Ethics and safety</h2>
+        <p class="api-section-lead">We design AI as decision support only. No autonomous diagnosis; bias mitigation and transparency are built in.</p>
+        <div class="diff-grid">
+          <div class="diff-card">Decision support only: the system suggests and explains; clinicians and patients make the final call. No AI-driven diagnosis or treatment decisions.</div>
+          <div class="diff-card">Transparent reasoning: every risk change can be traced to inputs and thresholds. We avoid black-box outputs in critical health contexts.</div>
+          <div class="diff-card">Bias mitigation: we test scoring across populations and correct for known biases in training data and thresholds where possible.</div>
+          <div class="diff-card">Regulatory alignment: our approach is built to support compliance with health-data and AI-in-healthcare guidelines (e.g. HIPAA-style, ethical AI).</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© Syntax Health. AI-Powered Physiological Simulation.</p>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

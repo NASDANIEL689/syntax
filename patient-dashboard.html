@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patient Dashboard — Syntax Health</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="patient-dashboard.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body class="patient-dashboard-body">
+  <!-- Dashboard Navbar: logo, user name, logout -->
+  <header class="dashboard-nav">
+    <div class="dashboard-nav-inner">
+      <a href="index.html" class="logo">
+        <img src="pics/logo3.jpeg" alt="Syntax Health" class="logo-icon-img dashboard-logo-img" />
+        <span class="logo-text">Syntax Health</span>
+      </a>
+      <div class="dashboard-nav-right">
+        <span class="dashboard-user-name" id="dashboard-user-name">Patient</span>
+        <a href="index.html" class="btn btn-logout" id="dashboard-logout">
+          <span class="btn-logout-icon" aria-hidden="true">&#8592;</span>
+          Logout
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="patient-dashboard-main">
+    <!-- Left: avatar placeholder. Middle: charts, simulation, advice -->
+    <section class="dashboard-hero">
+      <div class="dashboard-hero-inner">
+        <div class="dashboard-hero-center">
+        <aside class="dashboard-sidebar">
+          <div class="dashboard-avatar-wrap">
+            <div class="dashboard-avatar" id="dashboard-avatar">P</div>
+          </div>
+          <p class="dashboard-avatar-placeholder-label">Your photo</p>
+        </aside>
+        <div class="dashboard-content">
+          <div class="dashboard-hero-title">
+            <h1>Your dashboard</h1>
+            <p class="dashboard-hero-sub">Risk overview, simulation and advice at a glance.</p>
+          </div>
+          <div class="dashboard-hero-grid">
+          <div class="dashboard-factors card-glass">
+            <h2 class="dashboard-block-title">Tracked clinical factors</h2>
+            <div class="dashboard-factors-grid">
+              <div class="dashboard-factor-item">
+                <span class="dashboard-factor-label">BMI</span>
+                <span class="dashboard-factor-value" id="factor-bmi">24.2</span>
+                <span class="dashboard-factor-unit">kg/m²</span>
+                <span class="dashboard-factor-status status-normal">Normal</span>
+              </div>
+              <div class="dashboard-factor-item">
+                <span class="dashboard-factor-label">Glucose</span>
+                <span class="dashboard-factor-value" id="factor-glucose">98</span>
+                <span class="dashboard-factor-unit">mg/dL</span>
+                <span class="dashboard-factor-status status-normal">Normal</span>
+              </div>
+              <div class="dashboard-factor-item">
+                <span class="dashboard-factor-label">Platelet count</span>
+                <span class="dashboard-factor-value" id="factor-platelets">245</span>
+                <span class="dashboard-factor-unit">×10⁹/L</span>
+                <span class="dashboard-factor-status status-normal">Normal</span>
+              </div>
+              <div class="dashboard-factor-item">
+                <span class="dashboard-factor-label">Blood pressure</span>
+                <span class="dashboard-factor-value" id="factor-bp">122/78</span>
+                <span class="dashboard-factor-unit">mmHg</span>
+                <span class="dashboard-factor-status status-normal">Normal</span>
+              </div>
+              <div class="dashboard-factor-item">
+                <span class="dashboard-factor-label">Heart rate</span>
+                <span class="dashboard-factor-value" id="factor-hr">72</span>
+                <span class="dashboard-factor-unit">bpm</span>
+                <span class="dashboard-factor-status status-normal">Normal</span>
+              </div>
+              <div class="dashboard-factor-item">
+                <span class="dashboard-factor-label">HbA1c</span>
+                <span class="dashboard-factor-value" id="factor-hba1c">5.4</span>
+                <span class="dashboard-factor-unit">%</span>
+                <span class="dashboard-factor-status status-normal">Normal</span>
+              </div>
+            </div>
+          </div>
+          <div class="dashboard-charts">
+            <h2 class="dashboard-block-title">Clinical trends</h2>
+            <div class="dashboard-charts-row">
+              <div class="dashboard-chart-wrap">
+                <canvas id="chart-risk-trend" width="200" height="140"></canvas>
+                <p class="dashboard-chart-label">Risk trend (7 days)</p>
+              </div>
+              <div class="dashboard-chart-wrap">
+                <canvas id="chart-glucose" width="200" height="140"></canvas>
+                <p class="dashboard-chart-label">Glucose (7 days)</p>
+              </div>
+              <div class="dashboard-chart-wrap">
+                <canvas id="chart-factors" width="200" height="140"></canvas>
+                <p class="dashboard-chart-label">BMI, Glucose, Platelets</p>
+              </div>
+            </div>
+          </div>
+          <div class="dashboard-sim card-glass">
+            <h2 class="dashboard-block-title">Simulation</h2>
+            <p class="dashboard-sim-text">Your digital twin is up to date. Next run: &quot;if trend continues&quot; in 2 days.</p>
+            <a href="index.html#demo" class="btn btn-primary btn-sm">Run simulation</a>
+          </div>
+          <div class="dashboard-advice card-glass">
+            <h2 class="dashboard-block-title">Advice</h2>
+            <p class="dashboard-advice-text">Keep your current routine. No new alerts. Next check-in suggested in 3 days.</p>
+            <a href="index.html#how-it-works" class="btn btn-secondary btn-sm">See recommendations</a>
+          </div>
+          <div class="dashboard-doctor card-glass">
+            <h2 class="dashboard-block-title">Your doctor</h2>
+            <div id="dashboard-doctor-status" class="dashboard-doctor-status"></div>
+            <div id="dashboard-doctor-search-wrap" class="dashboard-doctor-search-wrap" style="display: none;">
+              <p class="dashboard-doctor-search-lead">Search by name or email to send a request to a doctor or nurse.</p>
+              <div class="dashboard-doctor-search-row">
+                <input type="text" id="dashboard-doctor-search" class="dashboard-doctor-search-input" placeholder="e.g. Dr. Smith or email@clinic.com" />
+                <button type="button" id="dashboard-doctor-search-btn" class="btn btn-primary btn-sm">Search</button>
+              </div>
+              <p id="dashboard-doctor-search-msg" class="dashboard-doctor-search-msg" style="display: none;"></p>
+              <ul id="dashboard-doctor-results" class="dashboard-doctor-results"></ul>
+            </div>
+          </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom: content provided by AI agent -->
+    <section class="dashboard-ai-section">
+      <div class="dashboard-ai-inner">
+        <h2 class="dashboard-ai-title">
+          <span class="dashboard-ai-icon" aria-hidden="true">&#129302;</span>
+          Provided by your AI agent
+        </h2>
+        <div class="dashboard-ai-content" id="dashboard-ai-content">
+          <p>Your AI agent has reviewed your tracked clinical factors (BMI, glucose, platelet count, blood pressure, and related metrics). Summary:</p>
+          <ul>
+            <li>Overall risk remains <strong>low</strong>. BMI, glucose, and platelet count are within normal range.</li>
+            <li>Blood pressure and heart rate are stable. Keep up your current routine.</li>
+            <li>Next suggested steps: log updated clinical values in 2 days, or run a new simulation if you change medication or routine.</li>
+          </ul>
+          <p class="dashboard-ai-disclaimer">This is decision support only. Always follow your clinician&#39;s advice.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script src="patient-dashboard.js"></script>
+</body>
+</html>

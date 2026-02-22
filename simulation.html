@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulation — Syntax Health</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="simulation.css" />
+</head>
+<body>
+  <header class="nav-bar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="pics/logo3.jpeg" alt="Syntax Health" class="logo-icon-img" />
+        <span class="logo-text">Syntax Health</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="api.html">API</a>
+        <a href="ai.html">AI</a>
+        <div class="nav-dropdown">
+          <button type="button" class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">Solution</button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="simulation.html" class="active">Simulation</a></li>
+            <li><a href="visualization.html">Visualization</a></li>
+          </ul>
+        </div>
+      </nav>
+      <a href="index.html#demo" class="btn btn-primary">Request Demo</a>
+    </div>
+  </header>
+
+  <main class="section api-page" style="padding-top: 10rem;">
+    <div class="container">
+      <h1 class="section-title">Simulation</h1>
+      <p class="section-lead">Our digital twin engine simulates the human body in real time. Run &quot;if trend continues&quot; and &quot;if intervention occurs&quot; scenarios and compare future projections.</p>
+
+      <!-- Live demonstration: enter details → run → see cards, charts, and what the data means -->
+      <section class="sim-demo section">
+        <h2 class="sim-demo-title">Live demonstration</h2>
+        <p class="sim-demo-lead">Enter your clinical details below. The simulation will use this data to project risk and show what it means for your health.</p>
+
+        <form id="sim-form" class="sim-form card-glass">
+          <h3 class="sim-form-heading">Clinical inputs for accurate simulation</h3>
+          <div class="sim-form-grid">
+            <div class="sim-field">
+              <label for="sim-age">Age (years)</label>
+              <input type="number" id="sim-age" name="age" min="1" max="120" value="35" placeholder="e.g. 35" />
+            </div>
+            <div class="sim-field">
+              <label for="sim-sex">Gender</label>
+              <select id="sim-sex" name="sex">
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+                <option value="pregnant">Pregnant woman</option>
+              </select>
+            </div>
+            <div class="sim-field">
+              <label for="sim-weight">Weight (kg)</label>
+              <input type="number" id="sim-weight" name="weight" min="20" max="300" step="0.1" value="70" placeholder="e.g. 70" />
+            </div>
+            <div class="sim-field">
+              <label for="sim-height">Height (cm)</label>
+              <input type="number" id="sim-height" name="height" min="100" max="250" value="170" placeholder="e.g. 170" />
+            </div>
+            <div class="sim-field">
+              <label for="sim-glucose">Glucose (mg/dL)</label>
+              <input type="number" id="sim-glucose" name="glucose" min="50" max="400" value="98" placeholder="e.g. 98" />
+            </div>
+            <div class="sim-field">
+              <label for="sim-platelets">Platelet count (×10⁹/L)</label>
+              <input type="number" id="sim-platelets" name="platelets" min="50" max="600" value="245" placeholder="e.g. 245" />
+            </div>
+            <div class="sim-field">
+              <label for="sim-bp-sys">Systolic BP (mmHg)</label>
+              <input type="number" id="sim-bp-sys" name="bpSys" min="70" max="220" value="122" placeholder="e.g. 122" />
+            </div>
+            <div class="sim-field">
+              <label for="sim-bp-dia">Diastolic BP (mmHg)</label>
+              <input type="number" id="sim-bp-dia" name="bpDia" min="40" max="140" value="78" placeholder="e.g. 78" />
+            </div>
+            <div class="sim-field">
+              <label for="sim-hr">Heart rate (bpm)</label>
+              <input type="number" id="sim-hr" name="heartRate" min="40" max="180" value="72" placeholder="e.g. 72" />
+            </div>
+            <div class="sim-field">
+              <label for="sim-hba1c">HbA1c (%)</label>
+              <input type="number" id="sim-hba1c" name="hba1c" min="4" max="14" step="0.1" value="5.4" placeholder="e.g. 5.4" />
+            </div>
+          </div>
+          <div class="sim-chatbot">
+            <label for="sim-whats-wrong">What's wrong? Describe your symptoms or concerns</label>
+            <textarea id="sim-whats-wrong" name="whatsWrong" class="sim-chatbot-input" rows="4" placeholder="e.g. I've had headaches and swelling in my legs for a week. I'm tired and my blood pressure has been higher than usual."></textarea>
+          </div>
+          <div class="sim-form-actions">
+            <button type="submit" class="btn btn-primary" id="sim-run-btn">Run simulation</button>
+          </div>
+          <p id="sim-form-error" class="sim-form-error" style="display: none;"></p>
+        </form>
+
+        <div id="sim-results" class="sim-results" style="display: none;">
+          <h3 class="sim-results-title">Simulation results</h3>
+          <p class="sim-results-sub">Based on your inputs, here is your digital twin projection and what it means.</p>
+
+          <div class="sim-cards">
+            <div class="sim-card card-glass">
+              <span class="sim-card-label">Overall risk</span>
+              <span class="sim-card-value" id="sim-card-overall">Low</span>
+            </div>
+            <div class="sim-card card-glass">
+              <span class="sim-card-label">Cardiovascular</span>
+              <span class="sim-card-value" id="sim-card-cardio">Low</span>
+            </div>
+            <div class="sim-card card-glass">
+              <span class="sim-card-label">Metabolic</span>
+              <span class="sim-card-value" id="sim-card-metabolic">Low</span>
+            </div>
+            <div class="sim-card card-glass">
+              <span class="sim-card-label">7-day projection</span>
+              <span class="sim-card-value" id="sim-card-projection">Stable</span>
+            </div>
+          </div>
+
+          <div class="sim-charts-row">
+            <div class="sim-chart-wrap">
+              <canvas id="sim-chart-risk" width="280" height="180"></canvas>
+              <p class="sim-chart-label">Risk trend (next 7 days)</p>
+            </div>
+            <div class="sim-chart-wrap">
+              <canvas id="sim-chart-systems" width="280" height="180"></canvas>
+              <p class="sim-chart-label">Risk by system</p>
+            </div>
+            <div class="sim-chart-wrap">
+              <canvas id="sim-chart-glucose" width="280" height="180"></canvas>
+              <p class="sim-chart-label">Glucose projection</p>
+            </div>
+          </div>
+
+          <div class="sim-meaning card-glass">
+            <h3 class="sim-meaning-title">What this data means</h3>
+            <div id="sim-meaning-content" class="sim-meaning-content">
+              <p>Your simulation will appear here after you run it.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="api-section">
+        <h2 class="api-section-title">How simulation works</h2>
+        <p class="api-section-lead">You send current health data (vitals, labs, symptoms, medications). Our engine updates a virtual health state and projects how that state may change over time. Results are returned in under 2 seconds for use in dashboards and alerts.</p>
+        <div class="cards-three">
+          <div class="card card-glass">
+            <h3>Inputs</h3>
+            <p>Vitals (BP, heart rate), mood and sleep scores, iron intake, activity level, pain, feeding and weight (for newborns). Data can be real-time or historical.</p>
+          </div>
+          <div class="card card-glass">
+            <h3>Models</h3>
+            <p>Per-system models (cardio, nervous, digestive, muscular, optional skeletal) run in parallel. Maternal and newborn models are linked where relevant.</p>
+          </div>
+          <div class="card card-glass">
+            <h3>Outputs</h3>
+            <p>Risk scores (low / moderate / high), trajectory curves, alert flags, and a unified digital twin state for visualization and the API.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="api-section">
+        <h2 class="api-section-title">Body system modules</h2>
+        <p class="api-section-lead">Each module simulates one aspect of physiology. Together they form a single digital twin; each can be used or updated independently.</p>
+        <div class="diff-grid">
+          <div class="diff-card">Cardiovascular: BP, heart rate, swelling, headache. Maternal cardiovascular risk and future trajectory; alerts when thresholds are exceeded.</div>
+          <div class="diff-card">Nervous system: mood score, sleep hours, stress. Emotional trend, postpartum depression risk (PHQ-style), 30-day mental health projection.</div>
+          <div class="diff-card">Digestive and nutritional: iron intake, appetite, hydration. Anemia risk, fatigue progression, and nutritional intervention signals.</div>
+          <div class="diff-card">Muscular recovery: activity level and pain. Postpartum recovery strength and delayed-recovery risk.</div>
+          <div class="diff-card">Skeletal (optional): calcium intake and bone strength trend for at-risk populations.</div>
+          <div class="diff-card">Maternal and newborn: pregnancy/postpartum stage, delivery type, infant birth weight; feeding, temperature, weight. Maternal risk index and newborn vulnerability score.</div>
+        </div>
+      </section>
+
+      <section class="api-section">
+        <h2 class="api-section-title">Scenario types</h2>
+        <p class="api-section-lead">Simulations support two main scenario types so clinicians and patients can compare outcomes.</p>
+        <div class="diff-grid">
+          <div class="diff-card">If trend continues: projects risk and trajectory assuming current behavior and no new intervention. Surfaces where and when risk may rise.</div>
+          <div class="diff-card">If intervention occurs: projects risk and trajectory after a chosen intervention (e.g. medication change, nutrition, rest, clinic visit). Enables side-by-side comparison with the baseline scenario.</div>
+          <div class="diff-card">Comparative view: both scenarios can be shown together in the dashboard and API so users see the impact of acting now vs. not acting.</div>
+        </div>
+      </section>
+
+      <section class="api-section">
+        <h2 class="api-section-title">Performance and scale</h2>
+        <p class="api-section-lead">Simulation is built for speed and scalability without sacrificing accuracy.</p>
+        <div class="diff-grid">
+          <div class="diff-card">Response time: simulation results in under 2 seconds so dashboards and alerts feel real-time.</div>
+          <div class="diff-card">Modular design: each body system is simulated in its own module so we can tune, update, or extend one system without rewriting the rest.</div>
+          <div class="diff-card">Scale: from a single clinic to national-level maternal or chronic-disease monitoring; architecture supports high concurrency and batch runs.</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© Syntax Health. AI-Powered Physiological Simulation.</p>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="script.js"></script>
+  <script src="simulation.js"></script>
+</body>
+</html>
